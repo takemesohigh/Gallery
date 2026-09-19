@@ -272,12 +272,9 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
         }
 
         hideKeyboard()
-        if (isPanorama) {
-            Intent(applicationContext, PanoramaVideoActivity::class.java).apply {
-                putExtra(PATH, realPath)
-                startActivity(this)
-            }
-        } else {
+        run {
+            // Panorama viewing removed: depended on the discontinued Google VR SDK.
+            // Panorama-flagged videos now fall through to the normal player.
             val mimeType = getUriMimeType(mUri.toString(), newUri)
             Intent(applicationContext, VideoPlayerActivity::class.java).apply {
                 setDataAndType(newUri, mimeType)

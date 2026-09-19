@@ -43,7 +43,6 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.gallery.pro.R
-import com.simplemobiletools.gallery.pro.activities.PanoramaPhotoActivity
 import com.simplemobiletools.gallery.pro.activities.PhotoActivity
 import com.simplemobiletools.gallery.pro.activities.PhotoVideoActivity
 import com.simplemobiletools.gallery.pro.activities.ViewPagerActivity
@@ -641,10 +640,8 @@ class PhotoFragment : ViewPagerFragment() {
     private fun getFilePathToShow() = if (mMedium.isPortrait()) mCurrentPortraitPhotoPath else getPathToLoad(mMedium)
 
     private fun openPanorama() {
-        Intent(context, PanoramaPhotoActivity::class.java).apply {
-            putExtra(PATH, mMedium.path)
-            startActivity(this)
-        }
+        // Panorama viewing removed: depended on the discontinued Google VR SDK
+        // (com.google.vr:sdk-panowidget), which is no longer resolvable.
     }
 
     private fun scheduleZoomableView() {

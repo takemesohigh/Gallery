@@ -28,7 +28,6 @@ import com.bumptech.glide.Glide
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.gallery.pro.R
-import com.simplemobiletools.gallery.pro.activities.PanoramaVideoActivity
 import com.simplemobiletools.gallery.pro.activities.VideoActivity
 import com.simplemobiletools.gallery.pro.databinding.PagerVideoItemBinding
 import com.simplemobiletools.gallery.pro.extensions.config
@@ -502,10 +501,8 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
     }
 
     private fun openPanorama() {
-        Intent(context, PanoramaVideoActivity::class.java).apply {
-            putExtra(PATH, mMedium.path)
-            startActivity(this)
-        }
+        // Panorama viewing removed: depended on the discontinued Google VR SDK
+        // (com.google.vr:sdk-videowidget), which is no longer resolvable.
     }
 
     override fun fullscreenToggled(isFullscreen: Boolean) {
