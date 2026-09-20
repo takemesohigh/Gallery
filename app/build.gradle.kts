@@ -2,13 +2,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.konan.properties.Properties
 import java.io.FileInputStream
 
-val isProprietary = gradle.startParameter.taskNames.any { task -> task.contains("Proprietary") }
-
 plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.imgly).apply(false)
 }
 
 val keystorePropertiesFile: File = rootProject.file("keystore.properties")
@@ -64,16 +61,11 @@ android {
 
     flavorDimensions.add("licensing")
     productFlavors {
-        register("proprietary")
         register("foss")
-        register("prepaid")
     }
 
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
-        if (isProprietary) {
-            getByName("main").java.srcDirs("src/proprietary/kotlin")
-        }
     }
 
     compileOptions {
@@ -126,9 +118,4 @@ dependencies {
 
     implementation(libs.bundles.room)
     ksp(libs.androidx.room.compiler)
-}
-
-// Apply the PESDKPlugin
-if (isProprietary) {
-    apply(from = "../gradle/imglysdk.gradle")
 }
